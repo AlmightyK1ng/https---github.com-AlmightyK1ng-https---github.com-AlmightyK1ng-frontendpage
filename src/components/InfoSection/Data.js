@@ -8,7 +8,7 @@ export const homeObjOne = {
     description:
     'Get access to our exclusive website that allows you to sign up, check locations, and report businesses that have COVID-19.',
      buttonLabel: 'Get Started',
-     imgStart: true,
+     imgStart: false,
      img: require('../../images/svg-1.svg'),
      alt: 'Social Distancing',
      dark: true,
@@ -41,7 +41,7 @@ export const homeObjOne = {
         lightBg: false,
         lightText: true,
         lightTextDesc: true,
-        topLine: 'Join our Team',
+        topLine: 'Join our website',
         headline: 'Creating an account is extremely easy',
         description:
           "Get everything set up and ready in under 10 minutes. All you need to do is add your information and you're ready to go.",
