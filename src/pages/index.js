@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Sidebar from '../components/Sidebar';
 import HeroSection from '../components/HeroSection';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import InfoSection from '../components/InfoSection/Index';
 import { homeObjOne, homeObjTwo, homeObjThree } from '../components/InfoSection/Data';
 import Services from '../components/Services';
@@ -25,7 +26,7 @@ function Home() {
             <InfoSection {...homeObjTwo}/>
             <Services />
             <InfoSection {...homeObjThree}/>
-    
+            <Footer />
         </>
     )
 }
