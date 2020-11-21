@@ -63,7 +63,7 @@ const Footer = () => {
             <SocialLogo to='/' onClick={toggleHome}>
               Home
             </SocialLogo>
-            <WebsiteRights> Wallace, Cameron, Muhammad, Archittect, Emmett @ 2020 Rights are reserved</WebsiteRights>
+            <WebsiteRights> Wallace, Cameron, Muhammad, Archit, Emmett @ 2020 Rights are reserved </WebsiteRights>
             <SocialIcons>
               <SocialIconLink href='/' target='_blank' aria-label='Facebook'>
                 <FaFacebook />
