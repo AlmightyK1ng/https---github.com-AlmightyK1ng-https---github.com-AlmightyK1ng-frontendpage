@@ -17,8 +17,15 @@ import {
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const Navbar = ({ toggle, auth, handleAuth }) => {
+const Navbar = ({
+  toggle,
+  auth,
+  handleAuth,
+  displayState,
+  displayStateHandler,
+}) => {
   const handleLogout = (e) => {
+    displayStateHandler("0");
     e.preventDefault();
     //console.log("clicked");
     //Cookies.remove("PHPSESSID");
@@ -64,6 +71,14 @@ const Navbar = ({ toggle, auth, handleAuth }) => {
                 ""
               ) : (
                 <NavMenuItem to='/ChooseRegister'>Sign Up</NavMenuItem>
+              )}
+            </NavItem>
+            <NavItem>
+              {displayState === "1" && (
+                <NavMenuItem to='/test1'>test1</NavMenuItem>
+              )}
+              {displayState === "2" && (
+                <NavMenuItem to='/test2'>test2</NavMenuItem>
               )}
             </NavItem>
           </NavMenu>

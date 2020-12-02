@@ -20,6 +20,8 @@ import SelectBusiness from "./components/SelectBusiness/SelectBusiness";
 import AddBusiness from "./components/AddBusiness/AddBusiness";
 import ChooseRegister from "./components/ChooseRegister/ChooseRegister";
 import PatronRegister from "./components/PatronRegister/PatronRegister";
+import NewAlert from "./components/Notifications/NewAlert";
+import NewNotification from "./components/Business/NewNotification";
 
 function App() {
   // This runs right when the app starts (useEffect)
@@ -46,6 +48,17 @@ function App() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [auth, setAuth] = useState(false);
+  const [businessType, setBusinessType] = useState();
+  const [userType, setUserType] = useState();
+
+  const userTypeHandler = (x) => {
+    setUserType(x);
+  };
+
+  const businessTypeHandler = (e) => {
+    setBusinessType(e.target.value);
+    console.log(e.target.value);
+  };
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -68,17 +81,37 @@ function App() {
   return (
     <Router>
       <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Navbar toggle={toggle} auth={auth} handleAuth={handleAuth} />
+      <Navbar
+        toggle={toggle}
+        auth={auth}
+        handleAuth={handleAuth}
+        displayState={userType}
+        displayStateHandler={userTypeHandler}
+      />
       <Switch>
         <Route exact path='/' component={Home} />
         <PrivateRoute exact path='/Business' component={Business} auth={auth} />
         <Route exact path='/Business' component={Business} />
         <Route exact path='/ChooseRegister' component={ChooseRegister} />
         <Route exact path='/Login'>
-          <Login authHandler={handleAuth} />
+          <Login
+            authHandler={handleAuth}
+            value={businessType}
+            valueHandler={businessTypeHandler}
+            userValueHandler={userTypeHandler}
+          />
         </Route>
         <Route exact path='/Register' component={Register}></Route>
         <Route exact path='/PatronRegister' component={PatronRegister}></Route>
+        <PrivateRoute exact path='/NewAlert' component={NewAlert} auth={auth} />
+        <Route exact path='/NewAlert' component={NewAlert} />
+        <PrivateRoute
+          exact
+          path='/NewNotification'
+          component={NewNotification}
+          auth={auth}
+        />
+        <Route exact path='/NewNotification' component={NewNotification} />
         <Route exact path='/AddBusiness' component={AddBusiness}></Route>
         {/* <Route exact path='/Login' component={Login} x={handleAuth} />  */}
         <PrivateRoute
@@ -102,6 +135,12 @@ function App() {
           auth={auth}
         />
         <Route exact path='/SelectBusiness' component={SelectBusiness} />
+        {userType === "1" && (
+          <Route exact path='/test1' component={SelectBusiness} />
+        )}
+        {userType === "2" && (
+          <Route exact path='/test2' component={BusinessMain} />
+        )}
         {/* 404(page not found) Redirect */}
         <Redirect to='/' />
       </Switch>

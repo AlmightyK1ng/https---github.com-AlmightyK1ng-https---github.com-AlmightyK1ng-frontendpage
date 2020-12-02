@@ -11,7 +11,7 @@ import { Table, Toast, ToastBody, ToastHeader, Button } from "reactstrap";
 import axios from "axios";
 import { RadioGroup, RadioButton } from "react-radio-buttons";
 const SelectBusiness = (props) => {
-  let urlAll = "/react-backend/displayAllBusiness.php";
+  let urlAll = "/react-backend/owner/displayAllBusiness.php";
   const [AllBusinesses, showAllBusinesses] = useState([]);
   const [business, setBusiness] = useState();
   useEffect(() => {
@@ -27,7 +27,7 @@ const SelectBusiness = (props) => {
   }, []);
 
   const selectButton = (e) => {
-    const urlSelect = "/react-backend/selectBusiness.php";
+    const urlSelect = "/react-backend/owner/selectBusiness.php";
     axios
       .post(urlSelect)
       .then((res) => {
@@ -38,7 +38,7 @@ const SelectBusiness = (props) => {
 
   const selectedBusiness = (e) => {
     //console.log("this is street" + business);
-    const urlSelect = "/react-backend/selectBusiness.php";
+    const urlSelect = "/react-backend/owner/selectBusiness.php";
     axios
       .post(urlSelect, { street: business })
       .then((res) => {

@@ -41,7 +41,7 @@ const BusinessInfo = () => {
     console.log("clicked");
 
     // set urls
-    const url = "/react-backend/updateBusinessInfo.php";
+    const url = "/react-backend/business/updateBusinessInfo.php";
 
     // post business info data
     axios.post(url, formData2).then((res) => {

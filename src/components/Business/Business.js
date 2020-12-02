@@ -40,7 +40,7 @@ const Business = (props) => {
     formData2.append("temp", formData.temp);
     console.log("clicked");
 
-    const url = "/react-backend/patron.php";
+    const url = "/react-backend/business/patron.php";
     axios
 
       .post(url, formData2)
@@ -67,7 +67,7 @@ const Business = (props) => {
     formData3.append("dateOfCase", formData.dateOfCase);
     console.log("clicked");
 
-    const url2 = "/react-backend/notification.php";
+    const url2 = "/react-backend/business/notification.php";
     axios
 
       .post(url2, formData3)

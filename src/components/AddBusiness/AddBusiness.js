@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { Button, Label, Input, FormGroup } from "reactstrap";
 import axios from "axios";
 import { RadioGroup, RadioButton } from "react-radio-buttons";
+import "./addbusiness.css";
 
 const AddBusiness = (props) => {
   const [formData, setFormdata] = useState({
@@ -43,7 +44,7 @@ const AddBusiness = (props) => {
 
     console.log("clicked");
 
-    const url = "/react-backend/addBusiness.php";
+    const url = "/react-backend/owner/addBusiness.php";
     axios
 
       .post(url, formData2)
@@ -62,8 +63,8 @@ const AddBusiness = (props) => {
   };
   return (
     <>
-      <h1>Add Business</h1>
-      <AvForm className='form' onValidSubmit={registerHandler}>
+      <AvForm className='formAddBusiness' onValidSubmit={registerHandler}>
+        <h1>Add Business</h1>
         <FormGroup>
           <AvField
             label='Business Name'

@@ -57,7 +57,7 @@ const Register = (props) => {
 
     console.log("clicked");
 
-    const url = "/react-backend/registration.php";
+    const url = "/react-backend/owner/registration.php";
     axios
 
       .post(url, formData2)
@@ -81,8 +81,8 @@ const Register = (props) => {
 
   return (
     <>
-      <h1>Register as a business owner</h1>
-      <AvForm className='form' onValidSubmit={registerHandler}>
+      <AvForm className='formRegister' onValidSubmit={registerHandler}>
+        <h1>Register as a business owner</h1>
         <FormGroup>
           <AvField
             label='First Name'

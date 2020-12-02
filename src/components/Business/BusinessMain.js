@@ -6,16 +6,29 @@ import React, {
   setData,
 } from "react";
 import { Link } from "react-router-dom";
-import { Table, Toast, ToastBody, ToastHeader, Button } from "reactstrap";
+import {
+  Table,
+  Toast,
+  ToastBody,
+  ToastHeader,
+  Button,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 import { MDBDataTable } from "mdbreact";
 import axios from "axios";
 import "./businessmain.css";
 
 const BusinessMain = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
   // Business URL
-  let businessInfoUrl = "/react-backend/displayBusinessInfo.php";
+  let businessInfoUrl = "/react-backend/business/displayBusinessInfo.php";
   // Patron URL
-  let checkinUrl = "/react-backend/displayCheckIn.php";
+  let checkinUrl = "/react-backend/business/displayCheckIn.php";
 
   // Checkin Data from Patron Table. Named 'rows' so it works with MDBTable. TO DO: Rename it later so fetch call makes more sense
   const [rows, setRows] = useState([]);
@@ -38,13 +51,13 @@ const BusinessMain = () => {
     {
       label: "Temperature",
       field: "temperature",
-      sort: "asc",
+      sort: "des",
       width: 200,
     },
     {
       label: "Date",
       field: "sheet_date",
-      sort: "asc",
+      sort: "desc",
       width: 100,
     },
     {
@@ -87,7 +100,7 @@ const BusinessMain = () => {
   };
 
   return (
-    <div>
+    <div className="formBusinessMain">
       <section>
         <aside>
           <Toast>
@@ -108,16 +121,32 @@ const BusinessMain = () => {
               <Link to='/BusinessInfo'>Edit Info</Link>
             </ToastBody>
           </Toast>
+          <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+            <DropdownToggle color='primary' caret>
+              <i class='fas fa-envelope'></i>
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem tag={Link} to='/NewNotification'>
+                <i class='fas fa-share-square'></i> Message
+              </DropdownItem>
+              <DropdownItem tag={Link} to='/NewAlert'>
+                <i
+                  style={{ color: "red" }}
+                  class='fas fa-exclamation-triangle'
+                ></i>
+                {"    "}Alert COVID Case
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </aside>
         <h1>{businessData.name}</h1>
         <h2>{businessData.type}</h2>
         <h3>Recent Check-ins</h3>
-        <li>
-          {" "}
+        <div>
           <Button color='success' tag={Link} to='/Business'>
             New Check-In
-          </Button>{" "}
-        </li>
+          </Button>
+        </div>
         {renderTable()}
       </section>
     </div>

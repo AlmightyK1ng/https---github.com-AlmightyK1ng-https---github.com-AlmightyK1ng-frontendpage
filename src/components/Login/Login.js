@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AvForm, AvField } from "availity-reactstrap-validation";
-import { Button, FormGroup, Label } from "reactstrap";
+import { Button, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
 import Cookies from "js-cookie";
 import "./login.css";
@@ -23,8 +23,13 @@ const Login = (props) => {
     formData2.append("password", formData.password);
     console.log("clicked");
 
+    let url = "";
     // send login details to database
-    const url = "/react-backend/verificationLogin.php";
+    if (props.value === "1") {
+      url = "/react-backend/patron/verificationLogin.php";
+    } else {
+      url = "/react-backend/owner/verificationLogin.php";
+    }
     axios
       .post(url, formData2)
       // if login details sucessful make auth true and save cookieafafs
@@ -32,6 +37,11 @@ const Login = (props) => {
         console.log(res);
         props.authHandler(true);
         setMessage("Successful Login");
+        if (props.value === "1") {
+          props.userValueHandler("1");
+        } else {
+          props.userValueHandler("2");
+        }
         //Cookies.set("Token", res.data.token, { expires: 7 });
       })
       // if login failed do nothing
@@ -48,6 +58,31 @@ const Login = (props) => {
       <h1>Login</h1>
       <AvForm className='form' onValidSubmit={registerHandler}>
         <FormGroup>
+          <h5>Account type</h5>
+          <FormGroup check>
+            <Label check>
+              <Input
+                type='radio'
+                name='radio1'
+                onChange={props.valueHandler}
+                value='1'
+              />
+              Patron
+            </Label>
+          </FormGroup>
+          <FormGroup check>
+            <Label check>
+              <Input
+                type='radio'
+                name='radio1'
+                onChange={props.valueHandler}
+                value='2'
+              />
+              Business Owner
+            </Label>
+          </FormGroup>
+        </FormGroup>
+        <FormGroup check>
           <AvField
             label='Email'
             type='email'
@@ -72,7 +107,7 @@ const Login = (props) => {
           <p className={message === "Successful Login" ? "suc" : "fail"}>
             {message}
           </p>
-          {message && <Redirect to='/SelectBusiness' />}
+          {message === "Successful Login" && <Redirect to='/' />}
         </FormGroup>
       </AvForm>
     </>

@@ -39,7 +39,7 @@ const PatronRegister = (props) => {
 
     console.log("clicked");
 
-    const url = "/react-backend/registration.php";
+    const url = "/react-backend/patron/registration.php";
     axios
 
       .post(url, formData2)
