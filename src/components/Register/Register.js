@@ -296,6 +296,7 @@ const Register = (props) => {
                 />
                 </FormGroup> */}
         <FormGroup>
+          <p className={message === "Successful" ? "suc" : "fail"}>{message}</p>
           <Button>Submit</Button>
         </FormGroup>
       </AvForm>
