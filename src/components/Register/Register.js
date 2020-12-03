@@ -198,6 +198,8 @@ const Register = (props) => {
             label='ZIP'
             type='text'
             name='zip'
+            minLength='5'
+            maxLength='5'
             onChange={(e) => {
               onChange(e);
             }}

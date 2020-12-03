@@ -3,6 +3,7 @@ import { AvForm, AvField, AvCheckbox } from "availity-reactstrap-validation";
 import { Button, FormGroup, Label } from "reactstrap";
 import axios from "axios";
 import "../Business/business.css";
+import { Link } from "react-router-dom";
 
 export default function NewAlert() {
   // Get Patron Data for Dropdown Menu
@@ -46,6 +47,9 @@ export default function NewAlert() {
             <i style={{ color: "white" }} class='fas fa-exclamation-triangle' />{" "}
             Report
           </Button>
+          <Button tag={Link} to='/BusinessMain'>
+            Back
+          </Button>{" "}
         </FormGroup>
       </AvForm>
     </div>

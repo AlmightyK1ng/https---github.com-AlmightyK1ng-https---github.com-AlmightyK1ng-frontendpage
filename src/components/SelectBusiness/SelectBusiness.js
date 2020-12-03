@@ -6,7 +6,7 @@ import React, {
   useEffect,
   setData,
 } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Table, Toast, ToastBody, ToastHeader, Button } from "reactstrap";
 import axios from "axios";
 import { RadioGroup, RadioButton } from "react-radio-buttons";
@@ -14,6 +14,7 @@ const SelectBusiness = (props) => {
   let urlAll = "/react-backend/owner/displayAllBusiness.php";
   const [AllBusinesses, showAllBusinesses] = useState([]);
   const [business, setBusiness] = useState();
+  const [message, setMessage] = useState(null);
   useEffect(() => {
     axios
       .get(urlAll)
@@ -33,7 +34,9 @@ const SelectBusiness = (props) => {
       .then((res) => {
         console.log(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const selectedBusiness = (e) => {
@@ -44,8 +47,12 @@ const SelectBusiness = (props) => {
       .then((res) => {
         console.log("this is street" + business);
         console.log(res);
+        setMessage("Successful");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setMessage("Failed");
+      });
   };
 
   const handleBusiness = (business) => {
@@ -100,6 +107,7 @@ const SelectBusiness = (props) => {
       <Button onClick={() => selectedBusiness(business)} color='success'>
         Select Business
       </Button>{" "}
+      {message === "Successful" && <Redirect to='/BusinessMain' />}
       <p></p>
       <Button color='success' tag={Link} to='/AddBusiness'>
         Add Business

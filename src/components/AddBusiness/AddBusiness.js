@@ -26,6 +26,8 @@ const AddBusiness = (props) => {
     county: "",
   });
 
+  const [message, setMessage] = useState(null);
+
   const onChange = (e) => {
     setFormdata({ ...formData, [e.target.name]: e.target.value });
     console.log(formData);
@@ -56,9 +58,11 @@ const AddBusiness = (props) => {
       // })
       .then((res) => {
         console.log(res);
+        setMessage("Added business");
       })
       .catch((err) => {
         console.log(err);
+        setMessage("Failed to add business");
       });
   };
   return (
@@ -242,7 +246,13 @@ const AddBusiness = (props) => {
                     />
                     </FormGroup> */}
         <FormGroup>
+          <p className={message === "Added business" ? "suc" : "fail"}>
+            {message}
+          </p>
           <Button>Submit</Button>
+          <Button tag={Link} to='/SelectBusiness'>
+            Back
+          </Button>{" "}
         </FormGroup>
       </AvForm>
     </>

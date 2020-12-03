@@ -107,7 +107,13 @@ const Login = (props) => {
           <p className={message === "Successful Login" ? "suc" : "fail"}>
             {message}
           </p>
-          {message === "Successful Login" && <Redirect to='/' />}
+          {message === "Successful Login" && props.value === "2" && (
+            <Redirect to='/SelectBusiness' />
+          )}
+          {message === "Successful Login" && props.value === "1" && (
+            <Redirect to='/' />
+          )}
+          {/* {message === "Successful Login" && <Redirect to='/SelectBusiness' />} */}
         </FormGroup>
       </AvForm>
     </>

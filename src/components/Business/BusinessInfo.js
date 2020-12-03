@@ -238,18 +238,11 @@ const BusinessInfo = () => {
                 </FormGroup> */}
 
         <FormGroup>
-          <ul>
-            <li>
-              {" "}
-              <Button color='success'>Submit</Button>{" "}
-            </li>
-            <li>
-              {" "}
-              <Button tag={Link} to='/BusinessMain'>
-                Back
-              </Button>{" "}
-            </li>
-          </ul>
+          {" "}
+          <Button color='success'>Submit</Button>{" "}
+          <Button tag={Link} to='/BusinessMain'>
+            Back
+          </Button>{" "}
         </FormGroup>
       </AvForm>
     </>

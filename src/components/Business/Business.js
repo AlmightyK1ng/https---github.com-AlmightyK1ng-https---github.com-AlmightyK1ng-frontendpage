@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import "./business.css";
+import { Link } from "react-router-dom";
 
 const Business = (props) => {
   const [formData, setFormdata] = useState({
@@ -52,12 +53,12 @@ const Business = (props) => {
       //})
       .then((res) => {
         console.log(res);
-        setMessage("Successful");
+        setMessage("Added patron");
         toggle();
       })
       .catch((err) => {
         console.log(err);
-        setMessage("Failed");
+        setMessage("Failed to add patron");
         toggle();
       });
   };
@@ -79,12 +80,12 @@ const Business = (props) => {
       //})
       .then((res) => {
         console.log(res);
-        setMessage("Successful");
+        //setMessage("Added patron");
         toggle();
       })
       .catch((err) => {
         console.log(err);
-        setMessage("Failed");
+        //setMessage("Failed to add patron");
         toggle();
       });
   };
@@ -141,10 +142,16 @@ const Business = (props) => {
           />
         </FormGroup>
         <FormGroup>
+          <p className={message === "Added patron" ? "suc" : "fail"}>
+            {message}
+          </p>
           <Button>Submit</Button>
+          <Button tag={Link} to='/BusinessMain'>
+            Back
+          </Button>{" "}
         </FormGroup>
       </AvForm>
-      <AvForm className='form' onValidSubmit={registerHandler2}>
+      {/* <AvForm className='form' onValidSubmit={registerHandler2}>
         <FormGroup>
           <AvField
             label='Date of Reported Case'
@@ -158,7 +165,7 @@ const Business = (props) => {
         <FormGroup>
           <Button>Report</Button>
         </FormGroup>
-      </AvForm>
+      </AvForm> */}
     </>
   );
 };

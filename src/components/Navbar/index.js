@@ -48,13 +48,18 @@ const Navbar = ({
             <FaBars />
           </MobileIcon>
           <NavMenu>
-            <NavItem>
-              <NavLinks to='about'>Covid-19</NavLinks>
-            </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavMenuItem to='/BusinessMain'>Business</NavMenuItem>
-            </NavItem>
-            <NavItem>
+            </NavItem> */}
+            {/* <NavItem>
+              {displayState === "1" && (
+                <NavMenuItem to='/'>Reviews</NavMenuItem>
+              )}
+              {displayState === "2" && (
+                <NavMenuItem to='/BusinessMain'>Business</NavMenuItem>
+              )}
+            </NavItem> */}
+            {/* <NavItem>
               {auth ? (
                 <NavMenuItem to='/SelectBusiness'>
                   Select/Add Business
@@ -62,23 +67,31 @@ const Navbar = ({
               ) : (
                 ""
               )}
-            </NavItem>
+            </NavItem> */}
             <NavItem>
-              <NavMenuItem to='/Business'>Check-In</NavMenuItem>
+              {displayState === "1" && (
+                <NavMenuItem to='/'>Visited Businesses</NavMenuItem>
+              )}
+              {displayState === "2" && (
+                <NavMenuItem to='/SelectBusiness'>
+                  Select/Add Business
+                </NavMenuItem>
+              )}
             </NavItem>
+            {/* <NavItem>
+              {displayState === "1" && (
+                <NavMenuItem to='/'>Search Businesses</NavMenuItem>
+              )}
+              {displayState === "2" && (
+                <NavMenuItem to='/Business'>Check-In</NavMenuItem>
+              )}
+            </NavItem> */}
+
             <NavItem>
               {auth ? (
                 ""
               ) : (
                 <NavMenuItem to='/ChooseRegister'>Sign Up</NavMenuItem>
-              )}
-            </NavItem>
-            <NavItem>
-              {displayState === "1" && (
-                <NavMenuItem to='/test1'>test1</NavMenuItem>
-              )}
-              {displayState === "2" && (
-                <NavMenuItem to='/test2'>test2</NavMenuItem>
               )}
             </NavItem>
           </NavMenu>
