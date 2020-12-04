@@ -70,7 +70,7 @@ const Navbar = ({
             </NavItem> */}
             <NavItem>
               {displayState === "1" && (
-                <NavMenuItem to='/'>Visited Businesses</NavMenuItem>
+                <NavMenuItem to='/PatronMain'>Visited Businesses</NavMenuItem>
               )}
               {displayState === "2" && (
                 <NavMenuItem to='/SelectBusiness'>

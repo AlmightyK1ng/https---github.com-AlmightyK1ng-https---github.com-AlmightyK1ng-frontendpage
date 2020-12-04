@@ -7,7 +7,17 @@ import React, {
   setData,
 } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { Table, Toast, ToastBody, ToastHeader, Button } from "reactstrap";
+import {
+  Table,
+  Toast,
+  ToastBody,
+  ToastHeader,
+  Button,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 import axios from "axios";
 import { RadioGroup, RadioButton } from "react-radio-buttons";
 const SelectBusiness = (props) => {
@@ -15,6 +25,8 @@ const SelectBusiness = (props) => {
   const [AllBusinesses, showAllBusinesses] = useState([]);
   const [business, setBusiness] = useState();
   const [message, setMessage] = useState(null);
+  const [adminDropdownOpen, setAdminDropdownOpen] = useState(false);
+  const toggleAdmin = () => setAdminDropdownOpen((prevState) => !prevState);
   useEffect(() => {
     axios
       .get(urlAll)
@@ -103,6 +115,16 @@ const SelectBusiness = (props) => {
   return (
     <>
       <h1>Select a business</h1>
+      <Dropdown isOpen={adminDropdownOpen} toggle={toggleAdmin}>
+        <DropdownToggle color='secondary' caret>
+          <i class='fas fa-users-cog'></i>
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem tag={Link} to='/BusinessOwnerInfo'>
+            <i class='fas fa-user-edit'></i> Change Owner Info
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
       {renderTable()}
       <Button onClick={() => selectedBusiness(business)} color='success'>
         Select Business
