@@ -24,6 +24,8 @@ import NewAlert from "./components/Notifications/NewAlert";
 import NewNotification from "./components/Business/NewNotification";
 import BusinessOwnerInfo from "./components/Business/BusinessOwnerInfo";
 import PatronMain from "./components/Patron/PatronMain";
+import PatronInfo from "./components/Patron/PatronInfo";
+import BusinessSearch from "./components/Patron/BusinessSearch";
 
 function App() {
   // This runs right when the app starts (useEffect)
@@ -92,6 +94,7 @@ function App() {
       />
       <Switch>
         <Route exact path='/' component={Home} />
+        <Route exact path='/SearchBusiness' component={BusinessSearch} />
         <PrivateRoute exact path='/Business' component={Business} auth={auth} />
         <Route exact path='/Business' component={Business} />
         <Route exact path='/ChooseRegister' component={ChooseRegister} />
@@ -123,6 +126,13 @@ function App() {
           auth={auth}
         />
         <Route exact path='/BusinessInfo' component={BusinessInfo} />
+        <PrivateRoute
+          exact
+          path='/PatronInfo'
+          component={PatronInfo}
+          auth={auth}
+        />
+        <Route exact path='/PatronInfo' component={PatronInfo} />
         <PrivateRoute
           exact
           path='/BusinessOwnerInfo'
