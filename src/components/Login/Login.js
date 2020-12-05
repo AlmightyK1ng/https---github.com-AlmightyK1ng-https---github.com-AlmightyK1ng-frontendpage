@@ -111,7 +111,7 @@ const Login = (props) => {
             <Redirect to='/SelectBusiness' />
           )}
           {message === "Successful Login" && props.value === "1" && (
-            <Redirect to='/' />
+            <Redirect to='/PatronMain' />
           )}
           {/* {message === "Successful Login" && <Redirect to='/SelectBusiness' />} */}
         </FormGroup>

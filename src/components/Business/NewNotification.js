@@ -5,26 +5,37 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import { Link } from "react-router-dom";
 
 const NewNotification = () => {
-  let url = "/react-backend/business/sendemail/messageByDate.php";
+  let url = "";
 
+  const [mail, setMail] = useState(null);
   const [messageData, setMessageData] = useState({
     subject: "",
     message: "",
-    selected_date: "",
+    start_date: "",
+    end_date: "",
   });
 
   const registrationHandler = () => {
     let newMessage = new FormData();
     newMessage.append("subject", messageData.subject);
     newMessage.append("message", messageData.message);
-    newMessage.append("selected_date", messageData.selected_date);
+    newMessage.append("start_date", messageData.start_date);
+    newMessage.append("end_date", messageData.end_date);
 
+    if (mail === "1") {
+      url = "/react-backend/business/sendemail/messageByContact.php";
+    } else {
+      url = "/react-backend/business/sendemail/messageByDate.php";
+    }
     axios
+
       .post(url, newMessage)
       .then((res) => {
+        console.log(mail);
         console.log(res);
       })
       .catch((err) => {
+        console.log(mail);
         console.log(err);
       });
   };
@@ -32,6 +43,11 @@ const NewNotification = () => {
   const onChange = (e) => {
     setMessageData({ ...messageData, [e.target.name]: e.target.value });
     console.log(messageData);
+  };
+
+  const onChangeMailHandler = (e) => {
+    setMail(e.target.value);
+    console.log(e.target.value);
   };
 
   return (
@@ -70,6 +86,7 @@ const NewNotification = () => {
             onChange(e);
           }}
         /> */}
+
       <FormGroup check>
         <h1>Send an email to patrons</h1>
         <AvField
@@ -89,10 +106,44 @@ const NewNotification = () => {
           }}
         />
         <FormGroup>
+          <FormGroup check>
+            <Label check>
+              <Input
+                type='radio'
+                name='radio1'
+                onChange={onChangeMailHandler}
+                value='1'
+              />
+              Send to all patrons
+            </Label>
+          </FormGroup>
+          <FormGroup check>
+            <Label check>
+              <Input
+                type='radio'
+                name='radio1'
+                onChange={onChangeMailHandler}
+                value='2'
+              />
+              Send to all patrons between two dates
+            </Label>
+          </FormGroup>
+        </FormGroup>
+        <FormGroup>
           <AvField
-            label='Date'
+            label='Start Date'
             type='date'
-            name='selected_date'
+            name='start_date'
+            onChange={(e) => {
+              onChange(e);
+            }}
+          />
+        </FormGroup>
+        <FormGroup>
+          <AvField
+            label='End Date'
+            type='date'
+            name='end_date'
             onChange={(e) => {
               onChange(e);
             }}
