@@ -1,6 +1,9 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
+
+import Dropdown from 'react-bootstrap/Dropdown'
+
 import {
   NavMenuItem,
   Nav,
@@ -94,6 +97,21 @@ const Navbar = ({
                 <NavMenuItem to='/ChooseRegister'>Sign Up</NavMenuItem>
               )}
             </NavItem>
+            
+            <Dropdown>
+            <Dropdown.Toggle variant="black" id="dropdown-basic">
+            Select User
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+            <Dropdown.Item href="/PatronRegister">Login As Patron</Dropdown.Item>
+            <Dropdown.Item href="/Register">Login As Business Owner</Dropdown.Item>
+    
+            </Dropdown.Menu>
+            </Dropdown>
+
+
+
           </NavMenu>
           <NavBtn>
             {auth ? (
